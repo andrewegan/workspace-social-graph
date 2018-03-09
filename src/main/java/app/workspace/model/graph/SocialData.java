@@ -17,6 +17,13 @@ import java.util.List;
 public class SocialData {
     private Elements elements;
 
+    public SocialData() {
+    }
+
+    public SocialData(Elements elements) {
+        this.elements = elements;
+    }
+
     public Elements getElements() {
         return elements;
     }

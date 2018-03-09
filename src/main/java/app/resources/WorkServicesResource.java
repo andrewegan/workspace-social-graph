@@ -5,8 +5,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Formatter;
+import java.util.List;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -31,6 +33,12 @@ import app.workspace.model.Annotation;
 import app.workspace.model.Message;
 import app.workspace.model.OauthResponse;
 import app.workspace.model.WebhookEvent;
+import app.workspace.model.graph.Edge;
+import app.workspace.model.graph.EdgeData;
+import app.workspace.model.graph.Elements;
+import app.workspace.model.graph.Node;
+import app.workspace.model.graph.NodeData;
+import app.workspace.model.graph.SocialData;
 import com.google.common.io.CharStreams;
 import retrofit2.http.Body;
 
@@ -122,6 +130,13 @@ public class WorkServicesResource {
         return Response.temporaryRedirect(uriInfo.getBaseUri()).cookie(idCookie).build();
     }
 
+    @Path("socialGraph")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getSocialGraph() {
+        return Response.ok(mockGraphData()).build();
+    }
+
 
     //utility methods below
 
@@ -205,6 +220,26 @@ public class WorkServicesResource {
         }
 
         return formatter.toString();
+    }
+
+    private SocialData mockGraphData() {
+        Node cat = new Node(new NodeData("cat"));
+        Node bird = new Node(new NodeData("bird"));
+        Node ladybug = new Node(new NodeData("ladybug"));
+        Node aphid = new Node(new NodeData("aphid"));
+        Node rose = new Node(new NodeData("rose"));
+        Node grasshopper = new Node(new NodeData("grasshopper"));
+        Node plant = new Node(new NodeData("plant"));
+        Node wheat = new Node(new NodeData("wheat"));
+        List<Node> nodes = Arrays.asList(cat, bird, ladybug, aphid, rose, grasshopper, plant, wheat);
+        List<Edge> edges = Arrays.asList(new Edge(new EdgeData(cat.getData().getId(), bird.getData().getId())),
+            new Edge(new EdgeData(bird.getData().getId(), ladybug.getData().getId())),
+            new Edge(new EdgeData(bird.getData().getId(), grasshopper.getData().getId())),
+            new Edge(new EdgeData(grasshopper.getData().getId(), plant.getData().getId())),
+            new Edge(new EdgeData(grasshopper.getData().getId(), wheat.getData().getId())),
+            new Edge(new EdgeData(ladybug.getData().getId(), aphid.getData().getId())),
+            new Edge(new EdgeData(aphid.getData().getId(), rose.getData().getId())));
+        return new SocialData(new Elements(nodes, edges));
     }
 
 }

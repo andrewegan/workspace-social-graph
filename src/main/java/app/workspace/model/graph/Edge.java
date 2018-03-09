@@ -22,6 +22,13 @@ import lombok.NoArgsConstructor;
 public class Edge {
     private EdgeData data;
 
+    public Edge() {
+    }
+
+    public Edge(EdgeData data) {
+        this.data = data;
+    }
+
     public EdgeData getData() {
         return data;
     }
