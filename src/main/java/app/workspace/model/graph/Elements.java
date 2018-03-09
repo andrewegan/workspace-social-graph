@@ -14,7 +14,7 @@ package app.workspace.model.graph;
 
 import java.util.List;
 
-public class Element {
+public class Elements {
 
     private List<Node> nodes;
 

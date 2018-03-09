@@ -15,13 +15,13 @@ package app.workspace.model.graph;
 import java.util.List;
 
 public class SocialData {
-    private List<Element> elements;
+    private Elements elements;
 
-    public List<Element> getElements() {
+    public Elements getElements() {
         return elements;
     }
 
-    public void setElements(List<Element> elements) {
+    public void setElements(Elements elements) {
         this.elements = elements;
     }
 }
