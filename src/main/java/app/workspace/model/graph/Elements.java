@@ -20,6 +20,14 @@ public class Elements {
 
     private List<Edge> edges;
 
+    public Elements() {
+    }
+
+    public Elements(List<Node> nodes, List<Edge> edges) {
+        this.nodes = nodes;
+        this.edges = edges;
+    }
+
     public List<Node> getNodes() {
         return nodes;
     }

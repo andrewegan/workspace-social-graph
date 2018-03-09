@@ -15,6 +15,13 @@ package app.workspace.model.graph;
 public class NodeData {
     private String id;
 
+    public NodeData() {
+    }
+
+    public NodeData(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
