@@ -11,6 +11,14 @@ dependencies {
   compile "io.dropwizard:dropwizard-core:$DROPWIZARD_VERSION"
   compile "io.dropwizard:dropwizard-assets:$DROPWIZARD_VERSION"
   compile "com.squareup.okhttp3:logging-interceptor:$LOGGINGINTERCEPTOR_VERSION"
+  compile group: 'com.orientechnologies', name: 'orientdb-client', version: '2.2.32'
+  compile group: 'com.orientechnologies', name: 'orientdb-core', version: '2.2.32'
+  compile group: 'com.orientechnologies', name: 'orient-commons', version: '2.0-M1'
+  compile group: 'com.orientechnologies', name: 'orientdb-enterprise', version: '2.1.25'
+  compile group: 'com.tinkerpop.blueprints', name: 'blueprints-core', version: '2.6.0'
+  compile group: 'com.orientechnologies', name: 'orientdb-graphdb', version: '2.2.32'
+
+  compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.20'
 }
 
 distributions {

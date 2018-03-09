@@ -12,8 +12,11 @@
 
 package app.workspace.model.graph;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class Elements {
 
     private List<Node> nodes;
