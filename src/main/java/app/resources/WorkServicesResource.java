@@ -27,6 +27,8 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import app.dao.DatabaseService;
+import app.dao.impl.DatabaseServiceImpl;
 import app.workspace.WorkspaceClient;
 import app.workspace.auth.AuthManager;
 import app.workspace.model.Annotation;
@@ -40,6 +42,7 @@ import app.workspace.model.graph.Node;
 import app.workspace.model.graph.NodeData;
 import app.workspace.model.graph.SocialData;
 import com.google.common.io.CharStreams;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import retrofit2.http.Body;
 
 @Path("")
@@ -223,23 +226,9 @@ public class WorkServicesResource {
     }
 
     private SocialData mockGraphData() {
-        Node cat = new Node(new NodeData("cat"));
-        Node bird = new Node(new NodeData("bird"));
-        Node ladybug = new Node(new NodeData("ladybug"));
-        Node aphid = new Node(new NodeData("aphid"));
-        Node rose = new Node(new NodeData("rose"));
-        Node grasshopper = new Node(new NodeData("grasshopper"));
-        Node plant = new Node(new NodeData("plant"));
-        Node wheat = new Node(new NodeData("wheat"));
-        List<Node> nodes = Arrays.asList(cat, bird, ladybug, aphid, rose, grasshopper, plant, wheat);
-        List<Edge> edges = Arrays.asList(new Edge(new EdgeData(cat.getData().getId(), bird.getData().getId())),
-            new Edge(new EdgeData(bird.getData().getId(), ladybug.getData().getId())),
-            new Edge(new EdgeData(bird.getData().getId(), grasshopper.getData().getId())),
-            new Edge(new EdgeData(grasshopper.getData().getId(), plant.getData().getId())),
-            new Edge(new EdgeData(grasshopper.getData().getId(), wheat.getData().getId())),
-            new Edge(new EdgeData(ladybug.getData().getId(), aphid.getData().getId())),
-            new Edge(new EdgeData(aphid.getData().getId(), rose.getData().getId())));
-        return new SocialData(new Elements(nodes, edges));
+        OrientGraph graph = new OrientGraph("remote:localhost/Workspaces3");
+        DatabaseService dummyDatabase = new DatabaseServiceImpl(graph);
+        return new SocialData(dummyDatabase.getElements());
     }
 
 }

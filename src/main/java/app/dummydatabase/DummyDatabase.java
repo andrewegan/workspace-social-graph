@@ -34,12 +34,6 @@ public class DummyDatabase {
         this.graph = graph;
     }
 
-    /**
-     *         OrientGraph graph = new OrientGraph("remote:localhost/Workspaces3");
-     DatabaseService dummyDatabase = new DatabaseServiceImpl(graph);
-     System.out.println(dummyDatabase.getElements());
-     * @return
-     */
     public Elements getData() {
 
         Elements elements = new Elements();
