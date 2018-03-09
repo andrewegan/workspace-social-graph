@@ -95,12 +95,10 @@ public class WorkServicesResource {
         //if it wasn't our app that sent it... No point talking to ourselves.
         if (!authManager.getAppId().equals(webhookEvent.getUserId())) {
             //TODO Add code here to respond to a webhook.
-            // You will likely want to do different things depending on the type of the webhookEvent.
-
-            // For now just post a message saying we received an event
+            // For starters, post the type of webhook event and affected members (i.e., added/removed)
             workspaceClient.createMessageAsApp(webhookEvent.getSpaceId(),
-                    buildMessage("Received event",
-                            String.format("Received event with type %s", webhookEvent.getType())));
+                    buildMessage(webhookEvent.getType(),
+                            String.format("%s", webhookEvent.getMemberIds())));
         }
 
         return Response.ok().build();
