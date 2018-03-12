@@ -22,13 +22,6 @@ import lombok.NoArgsConstructor;
 public class NodeData {
     private String id;
 
-    public NodeData() {
-    }
-
-    public NodeData(String id) {
-        this.id = id;
-    }
-
     public String getId() {
         return id;
     }

@@ -16,4 +16,10 @@ import app.workspace.model.graph.Elements;
 public interface DatabaseService {
 
     Elements getElements();
+
+    void addSpaceNodeIfNotExists(String spaceId);
+
+    void addMemberEdgeIfNotExists(String spaceId, String memberId);
+
+    void removeMemberEdge(String spaceId, String memberId);
 }

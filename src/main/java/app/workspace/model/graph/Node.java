@@ -22,13 +22,6 @@ import lombok.NoArgsConstructor;
 public class Node {
     private NodeData data;
 
-    public Node() {
-    }
-
-    public Node(NodeData data) {
-        this.data = data;
-    }
-
     public NodeData getData() {
         return data;
     }
